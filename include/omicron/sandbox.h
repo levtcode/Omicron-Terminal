@@ -1,12 +1,8 @@
 /* Frontera de seguridad. Una firma, dos implementaciones (darwin / linux).
  * Nada fuera de estos tres símbolos sabe qué mecanismo de kernel se usa. */
-#ifndef OMICRON_SANDBOX_H
-#define OMICRON_SANDBOX_H
+#pragma once
 
-#ifndef OM_POLICY_FWD
-#define OM_POLICY_FWD
 typedef struct om_policy om_policy;
-#endif
 
 /* Opaco: cada plataforma define su propio contenido en su .c */
 typedef struct om_sandbox om_sandbox;
@@ -19,5 +15,3 @@ om_sandbox *om_sandbox_prepare(const om_policy *p);
 int om_sandbox_apply(const om_sandbox *s);
 
 void om_sandbox_free(om_sandbox *s);
-
-#endif /* OMICRON_SANDBOX_H */

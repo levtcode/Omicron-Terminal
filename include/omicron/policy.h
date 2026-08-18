@@ -1,17 +1,13 @@
 /* Política del sandbox: describe qué se le permite al proceso aislado.
  * Son datos puros. No llama al kernel ni protege nada por sí sola:
  * la traducen sandbox_darwin.c (Seatbelt) y sandbox_linux.c (Landlock). */
-#ifndef OMICRON_POLICY_H
-#define OMICRON_POLICY_H
+#pragma once
 
 #include <stdbool.h>
 #include <stddef.h>
 #include <sys/resource.h>
 
-#ifndef OM_POLICY_FWD
-#define OM_POLICY_FWD
 typedef struct om_policy om_policy;
-#endif
 
 struct om_policy {
     char **ro_paths;   /* rutas de solo lectura */
@@ -37,5 +33,3 @@ int om_policy_parse_args(om_policy *p, int argc, char **argv, int *cmd_index);
 int om_policy_validate(om_policy *p);
 
 void om_policy_free(om_policy *p);
-
-#endif /* OMICRON_POLICY_H */
