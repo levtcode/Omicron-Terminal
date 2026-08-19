@@ -1,7 +1,8 @@
 /* Dueño: LevtCode. Portable: usar posix_openpt, no openpty (evita #ifdef). */
 
-/* Macro del compilador para poder usar posix_openpt. (Debe declararse casi al principio del código) */
-#define _XOPEN_SOURCE 600
+/* Sin _XOPEN_SOURCE: CMake ya compila en gnu11 (CMAKE_C_EXTENSIONS ON), que deja
+ * visible posix_openpt. Definirlo esconde las extensiones BSD que necesita el tty
+ * (cfmakeraw, TIOCSCTTY, struct winsize) y rompe el build en macOS. */
 
 #include "omicron/pty.h"
 #include "omicron/sandbox.h"
