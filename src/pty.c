@@ -1,8 +1,5 @@
 /* Dueño: LevtCode. Portable: usar posix_openpt, no openpty (evita #ifdef). */
 
-/* Macro del compilador para poder usar posix_openpt. (Debe declararse casi al principio del código) */
-#define _XOPEN_SOURCE 600
-
 #include "omicron/pty.h"
 #include "omicron/sandbox.h"
 

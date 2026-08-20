@@ -9,6 +9,12 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)  # gnu11: hace falta para POSIX/BSD (termios, ioctl)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# No funciona solo con CMAKE_C_EXTENSIONS, hay que definirlo explicitamente, aunque CMAKE_EXTENSIONS
+# expone símbolos clave de libc y glibc, para que funcione en Linux hay que añadir la macro
+# POSIX del compilador. Se debe definir antes que cualquier otro archivo o cabecera
+add_compile_definitions(_XOPEN_SOURCE=700)  # Usamos la versión 2008 POSIX
+add_compile_definitions(_DEFAULT_SOURCE)
+
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
 endif()

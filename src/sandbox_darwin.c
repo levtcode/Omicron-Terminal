@@ -17,6 +17,14 @@ om_sandbox *om_sandbox_prepare(const om_policy *p)
     return NULL;
 }
 
+/* Ojo al implementar: sandbox_init() está marcada deprecada desde macOS 10.8 y
+ * con -Werror el build falla por -Wdeprecated-declarations. Sigue siendo la API
+ * viva de Seatbelt, así que NO apagar OMICRON_WERROR: envolver solo la llamada.
+ *     #pragma clang diagnostic push
+ *     #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+ *     rc = sandbox_init(s->profile, 0, &err);
+ *     #pragma clang diagnostic pop
+ */
 int om_sandbox_apply(const om_sandbox *s)
 {
     (void)s;
